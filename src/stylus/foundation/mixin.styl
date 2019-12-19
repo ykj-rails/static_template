@@ -1,0 +1,76 @@
+hover()
+	transition opacity .2s ease-out
+	&:hover
+		opacity .7
+hoverLighten(color)
+	transition background-color .2s ease-out
+	&:hover
+		background-color: lighten(color,20%);
+		
+mincho()
+	font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+
+lineClamp(fontSize,lineHeight,line)
+	overflow: hidden
+	display: -webkit-box
+	-webkit-box-orient: vertical
+	word-break: break-all
+	height (fontSize * lineHeight * line)px
+	-webkit-line-clamp line
+	line-clamp line
+	box-orient: vertical
+	word-wrap break-word
+
+depth = colorName customImagePrimary customImageSecondary cart badge header hamburgerNav hamburger overlay modalConfirm
+zIndex(name)
+	z-index: index(depth, name) + 1
+
+placeholder(color,size)
+	&:placeholder-shown
+		color: color
+		font-size:size
+
+	// Webkit
+	&::-webkit-input-placeholder
+		color:color
+		font-size:size
+		opacity: 1
+
+	// Firefox 18-
+	&:-moz-placeholder
+		color:color
+		font-size:size
+
+	// Firefox 19+
+	&::-moz-placeholder
+		color:color
+		font-size:size
+		opacity: 1
+
+	// IE 10+
+	&:-ms-input-placeholder
+		color:color
+		font-size:size
+
+spriteResponsive($sprite)
+	{block}
+	white-space nowrap
+	text-indent 100%
+	overflow hidden
+	font-size 0
+
+	$sprite_w = $sprite[6]
+	$sprite_h = $sprite[7]
+	$image_w = $sprite[4]
+	$image_h = $sprite[5]
+	$offset_x = $sprite[0]
+	$offset_y = $sprite[1]
+
+	background-image url($sprite[8])
+	background-size ($sprite_w / $image_w * 100) % ($sprite_h / $image_h * 100) %
+	background-position ($offset_x / ($sprite_w - $image_w) * 100) % ($offset_y / ($sprite_h - $image_h) * 100) %
+
+	&::after
+		content ''
+		display block
+		padding-top ($image_h / $image_w * 100) %
